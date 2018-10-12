@@ -1,2 +1,2 @@
-# AI_CSP
+# AI CSP
 CSP problem generator and solver for AI HW3
