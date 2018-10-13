@@ -21,10 +21,9 @@ if __name__ == '__main__':
 
     course_list = list([a, b, c, d, e, f, g, h, i, j, k, l, m, n])
 
-    p_1, p_2, p_3, p_4, p_5, p_6, p_7, p_8, p_9, p_10 = create_random(course_list), create_random(
+    p_1, p_2, p_3, p_4, p_5, p_6, p_7 = create_random(course_list), create_random(
         course_list), create_random(course_list), create_random(course_list), create_random(course_list), create_random(
-        course_list), create_random(course_list), create_random(course_list), create_random(course_list), create_random(
-        course_list)
+        course_list), create_random(course_list)
 
     prof_list = list([p_1, p_2, p_3, p_4, p_5, p_6, p_7])
 
