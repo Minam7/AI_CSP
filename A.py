@@ -469,6 +469,7 @@ def problem_sol():
     if answer is not None:
         for i in range(n_courses):
             print(i, ' ', prof_list.index(answer[i]))
+            # print(i, ' ', prof_list.index(answer[i]), '->', 'knowledge', answer[i])
     else:
         log += 'no assignment'
         # print('no assignment')

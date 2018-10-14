@@ -4,7 +4,7 @@ import networkx as nx
 
 
 def define_n_profs(course_in):
-    in_profs = random.randint(course_in // 2, course_in)
+    in_profs = 5
 
     return in_profs
 
@@ -17,7 +17,7 @@ def create_random(c_list):
 
 
 def problem_gen(name):
-    n_courses = random.randint(10, 30)
+    n_courses = 6
     n_profs = define_n_profs(n_courses)
 
     out = ''
