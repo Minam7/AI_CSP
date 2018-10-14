@@ -1,7 +1,3 @@
-import os
-
-import networkx as nx
-
 import csp
 
 
@@ -12,14 +8,14 @@ def input_reader():
     temp1 = input().replace('\n', '')
     n_edge = int(temp1)
 
-    preq = nx.Graph()
-    courses = list(range(n_edge + 1))
-    preq.add_nodes_from(courses)
+    preq = dict()
+    for z in range(courses_num):
+        preq[z] = list()
 
     for z in range(n_edge):
         temp2 = input().replace('\n', '').split(' ')
-        tup = (int(temp2[0]), int(temp2[1]))
-        preq.add_edge(*tup)
+        preq[int(temp2[0])].append(int(temp2[1]))
+        preq[int(temp2[1])].append(int(temp2[0]))
 
     profs_k = list()
     for z in range(profs_num):
@@ -30,13 +26,6 @@ def input_reader():
         profs_k.append(temp)
 
     return courses_num, profs_num, preq, profs_k
-
-
-def create_neibours(data, course_num):
-    ans = dict()
-    for i in range(course_num):
-        ans[i] = list(data.neighbors(i))
-    return ans
 
 
 def func(in_A, in_a, in_B, in_b):
@@ -52,22 +41,19 @@ def problem_sol():
 
     prof_list = knowledge
 
-    neighbor_list = create_neibours(prereq, n_courses)
-
     prof_course = dict()
     for item in course_list:
         prof_course[item] = prof_list
 
-    problem = csp.CSP(course_list, prof_course, neighbor_list, func)
+    problem = csp.CSP(course_list, prof_course, prereq, func)
 
     answer = csp.tree_csp_solver(problem)
-    problem.display(answer)
+    # problem.display(answer)
 
     log = ''
     if answer is not None:
-        for key, value in answer.items():
-            log += str(key) + ' ' + str(prof_list.index(value)) + '\n'
-            # print('course:', key, '->', 'prof:', prof_list.index(value) + 1, '->', 'knowledge:', value[key])
+        for i in range(n_courses):
+            print(i, ' ', prof_list.index(answer[i]))
     else:
         log += 'no assignment'
         # print('no assignment')
@@ -76,6 +62,4 @@ def problem_sol():
 
 
 if __name__ == '__main__':
-    os.system("pip install networkx")
-
     problem_sol()
