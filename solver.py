@@ -27,9 +27,9 @@ def input_reader(name):
     profs_k = list()
     for z in range(profs_num):
         temp = dict()
+        temp2 = temp1[z].split(' ')
         for y in range(courses_num):
-            temp2 = temp1[(z * courses_num) + y].replace('\n', '').split(' ')
-            temp[int(temp2[0])] = int(temp2[1])
+            temp[y] = int(temp2[y])
         profs_k.append(temp)
 
     f.close()

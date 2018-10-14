@@ -35,9 +35,17 @@ def problem_gen(name):
         profs.append(create_random(list(courses.nodes)))
 
     out += '\n'
+    x = 0
     for item in profs:
+        y = 0
         for key, value in item.items():
-            out += str(key) + ' ' + str(value) + '\n'
+            out += str(value)
+            y += 1
+            if y < len(item.keys()):
+                out += ' '
+        x += 1
+        if x < len(profs):
+            out += '\n'
 
     file_name = name
     f = open(file_name, 'w')
