@@ -49,8 +49,8 @@ def func(in_A, in_a, in_B, in_b):
     return False
 
 
-if __name__ == '__main__':
-    n_courses, n_profs, prereq, knowledge = input_reader('inputs/input.txt')
+def problem_sol(name):
+    n_courses, n_profs, prereq, knowledge = input_reader(name)
 
     course_list = list(range(n_courses))
 
@@ -71,12 +71,19 @@ if __name__ == '__main__':
     if answer is not None:
         for key, value in answer.items():
             log += str(key) + ' ' + str(prof_list.index(value)) + '\n'
-            print('course:', key, '->', 'prof:', prof_list.index(value) + 1, '->', 'knowledge:', value[key])
+            # print('course:', key, '->', 'prof:', prof_list.index(value) + 1, '->', 'knowledge:', value[key])
     else:
         log += 'no assignment'
-        print('no assignment')
+        # print('no assignment')
 
-    file_name = 'inputs/output.txt'
-    f = open(file_name, 'w')
-    f.write(log)
-    f.close()
+    return log
+
+
+if __name__ == '__main__':
+    for i in range(10):
+        stri = 'in/input' + str(i + 1) + '.txt'
+        outp = problem_sol(stri)
+        stri = 'out/output' + str(i + 1) + '.txt'
+        f = open(stri, 'w')
+        f.write(outp)
+        f.close()

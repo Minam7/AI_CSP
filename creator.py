@@ -16,7 +16,7 @@ def create_random(c_list):
     return dict(zip(c_list, knowledge))
 
 
-if __name__ == '__main__':
+def problem_gen(name):
     n_courses = randint(10, 30)
     n_profs = define_n_profs(n_courses)
 
@@ -39,7 +39,13 @@ if __name__ == '__main__':
         for key, value in item.items():
             out += str(key) + ' ' + str(value) + '\n'
 
-    file_name = 'inputs/input.txt'
+    file_name = name
     f = open(file_name, 'w')
     f.write(out)
     f.close()
+
+
+if __name__ == '__main__':
+    for i in range(10):
+        stri = 'in/input' + str(i + 1) + '.txt'
+        problem_gen(stri)
