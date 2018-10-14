@@ -130,3 +130,7 @@ After that each professor's knowledge is printed for all courses
 11 73
 ```
 
+The answer must be in the following format, with courses sorted increasingly:
+```shell
+course_number professor_number
+```
