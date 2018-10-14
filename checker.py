@@ -37,6 +37,8 @@ def input_reader(name):
 def answer_reader(name):
     f = open(name)
     temp = f.readlines()
+    if len(temp) < 2:
+        return None
     ans = dict()
     for item in temp:
         temp1 = item.replace('\n', '').split(' ')
@@ -46,10 +48,11 @@ def answer_reader(name):
     return ans
 
 
-if __name__ == '__main__':
-    n_courses, n_profs, prereq, knowledge = input_reader('inputs/input.txt')
-    answer = answer_reader('inputs/output.txt')
-
+def check(name, name_out):
+    n_courses, n_profs, prereq, knowledge = input_reader(name)
+    answer = answer_reader(name_out)
+    if answer is None:
+        return 0
     find = 0
     for key, value in answer.items():
         if knowledge[value][key] < 80:
@@ -60,7 +63,16 @@ if __name__ == '__main__':
         if i in neib:
             find = 1
 
-    if find != 0:
-        print(False)
-    else:
-        print(True)
+    return find
+
+
+if __name__ == '__main__':
+
+    for i in range(10):
+        stri = 'in/input' + str(i + 1) + '.txt'
+        stro = 'out/output' + str(i + 1) + '.txt'
+        findo = check(stri, stro)
+        if findo != 0:
+            print(False)
+        else:
+            print(True)
