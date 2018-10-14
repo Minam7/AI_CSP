@@ -42,14 +42,7 @@ def answer_reader(name):
         temp1 = item.replace('\n', '').split(' ')
         ans[int(temp1[0])] = int(temp1[1])
 
-    return ans
-
-
-def find_prof(list_in, ind):
-    ans = []
-    for item in list_in:
-        ans.append(answer[item])
-    ans.append(answer[ind])
+    f.close()
     return ans
 
 
@@ -64,8 +57,7 @@ if __name__ == '__main__':
 
     for i in range(n_courses):
         neib = list(prereq.neighbors(i))
-        prof_neib = find_prof(neib, i)
-        if len(prof_neib) != len(set(prof_neib)):
+        if i in neib:
             find = 1
 
     if find != 0:

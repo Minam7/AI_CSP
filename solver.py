@@ -1,13 +1,46 @@
-import random
+import networkx as nx
 
 import csp
 
 
-def create_random(c_list):
-    knowledge = list()
-    for z in range(len(c_list)):
-        knowledge.append(random.randint(50, 100))
-    return dict(zip(c_list, knowledge))
+def input_reader(name):
+    f = open(name)
+
+    temp = f.readlines()
+    temp1 = temp[0].replace('\n', '').split(' ')
+    courses_num, profs_num = int(temp1[0]), int(temp1[1])
+
+    temp1 = temp[1].replace('\n', '')
+    n_edge = int(temp1)
+
+    preq = nx.Graph()
+    courses = list(range(n_edge + 1))
+    preq.add_nodes_from(courses)
+
+    temp1 = temp[2:n_edge + 2]
+    for item in temp1:
+        temp2 = item.replace('\n', '').split(' ')
+        tup = (int(temp2[0]), int(temp2[1]))
+        preq.add_edge(*tup)
+
+    temp1 = temp[n_edge + 3:]
+    profs_k = list()
+    for z in range(profs_num):
+        temp = dict()
+        for y in range(courses_num):
+            temp2 = temp1[(z * courses_num) + y].replace('\n', '').split(' ')
+            temp[int(temp2[0])] = int(temp2[1])
+        profs_k.append(temp)
+
+    f.close()
+    return courses_num, profs_num, preq, profs_k
+
+
+def create_neibours(data, course_num):
+    ans = dict()
+    for i in range(course_num):
+        ans[i] = list(data.neighbors(i))
+    return ans
 
 
 def func(in_A, in_a, in_B, in_b):
@@ -17,18 +50,13 @@ def func(in_A, in_a, in_B, in_b):
 
 
 if __name__ == '__main__':
-    a, b, c, d, e, f, g, h, i, j, k, l, m, n = 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
+    n_courses, n_profs, prereq, knowledge = input_reader('inputs/input.txt')
 
-    course_list = list([a, b, c, d, e, f, g, h, i, j, k, l, m, n])
+    course_list = list(range(n_courses))
 
-    p_1, p_2, p_3, p_4, p_5, p_6, p_7 = create_random(course_list), create_random(
-        course_list), create_random(course_list), create_random(course_list), create_random(course_list), create_random(
-        course_list), create_random(course_list)
+    prof_list = knowledge
 
-    prof_list = list([p_1, p_2, p_3, p_4, p_5, p_6, p_7])
-
-    neighbor_list = {a: [b], b: [a, c, d, e], c: [b, h, f], d: [b, g, k], e: [b], f: [c], g: [d], h: [c, j, i, l],
-                     i: [h, m, n], j: [h], k: [d], l: [h], m: [i], n: [i]}
+    neighbor_list = create_neibours(prereq, n_courses)
 
     prof_course = dict()
     for item in course_list:
@@ -36,11 +64,19 @@ if __name__ == '__main__':
 
     problem = csp.CSP(course_list, prof_course, neighbor_list, func)
 
-    ans = csp.tree_csp_solver(problem)
-    problem.display(ans)
+    answer = csp.tree_csp_solver(problem)
+    problem.display(answer)
 
-    if ans is not None:
-        for key, value in ans.items():
+    log = ''
+    if answer is not None:
+        for key, value in answer.items():
+            log += str(key) + ' ' + str(prof_list.index(value)) + '\n'
             print('course:', key, '->', 'prof:', prof_list.index(value) + 1, '->', 'knowledge:', value[key])
     else:
+        log += 'no assignment'
         print('no assignment')
+
+    file_name = 'inputs/output.txt'
+    f = open(file_name, 'w')
+    f.write(log)
+    f.close()
