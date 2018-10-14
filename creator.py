@@ -1,10 +1,10 @@
-from random import randint
+import random
 
 import networkx as nx
 
 
 def define_n_profs(course_in):
-    in_profs = randint(course_in // 2, course_in)
+    in_profs = random.randint(course_in // 2, course_in)
 
     return in_profs
 
@@ -12,12 +12,12 @@ def define_n_profs(course_in):
 def create_random(c_list):
     knowledge = list()
     for z in range(len(c_list)):
-        knowledge.append(randint(20, 100))
+        knowledge.append(random.randint(20, 100))
     return dict(zip(c_list, knowledge))
 
 
 def problem_gen(name):
-    n_courses = randint(10, 30)
+    n_courses = random.randint(10, 30)
     n_profs = define_n_profs(n_courses)
 
     out = ''
@@ -27,7 +27,9 @@ def problem_gen(name):
     courses = nx.random_tree(n_courses)
 
     out += str(len(courses.edges)) + '\n'
-    for item in courses.edges:
+    edges = list(courses.edges)
+    random.shuffle(edges)
+    for item in edges:
         out += str(item[0]) + ' ' + str(item[1]) + '\n'
 
     profs = list()
