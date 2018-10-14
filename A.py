@@ -1,38 +1,34 @@
+import os
+
 import networkx as nx
 
 import csp
 
 
-def input_reader(name):
-    f = open(name)
-
-    temp = f.readlines()
-    temp1 = temp[0].replace('\n', '').split(' ')
+def input_reader():
+    temp1 = input().replace('\n', '').split(' ')
     courses_num, profs_num = int(temp1[0]), int(temp1[1])
 
-    temp1 = temp[1].replace('\n', '')
+    temp1 = input().replace('\n', '')
     n_edge = int(temp1)
 
     preq = nx.Graph()
     courses = list(range(n_edge + 1))
     preq.add_nodes_from(courses)
 
-    temp1 = temp[2:n_edge + 2]
-    for item in temp1:
-        temp2 = item.replace('\n', '').split(' ')
+    for z in range(n_edge):
+        temp2 = input().replace('\n', '').split(' ')
         tup = (int(temp2[0]), int(temp2[1]))
         preq.add_edge(*tup)
 
-    temp1 = temp[n_edge + 2:]
     profs_k = list()
     for z in range(profs_num):
         temp = dict()
-        temp2 = temp1[z].split(' ')
+        temp2 = input().split(' ')
         for y in range(courses_num):
             temp[y] = int(temp2[y])
         profs_k.append(temp)
 
-    f.close()
     return courses_num, profs_num, preq, profs_k
 
 
@@ -49,8 +45,8 @@ def func(in_A, in_a, in_B, in_b):
     return False
 
 
-def problem_sol(name):
-    n_courses, n_profs, prereq, knowledge = input_reader(name)
+def problem_sol():
+    n_courses, n_profs, prereq, knowledge = input_reader()
 
     course_list = list(range(n_courses))
 
@@ -80,10 +76,6 @@ def problem_sol(name):
 
 
 if __name__ == '__main__':
-    for i in range(10):
-        stri = 'in/input' + str(i + 1) + '.txt'
-        outp = problem_sol(stri)
-        stri = 'out/output' + str(i + 1) + '.txt'
-        f = open(stri, 'w')
-        f.write(outp)
-        f.close()
+    os.system("pip install networkx")
+
+    problem_sol()

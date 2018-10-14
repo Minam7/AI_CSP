@@ -36,7 +36,6 @@ def problem_gen(name):
     for i in range(n_profs):
         profs.append(create_random(list(courses.nodes)))
 
-    out += '\n'
     x = 0
     for item in profs:
         y = 0
