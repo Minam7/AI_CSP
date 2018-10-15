@@ -5,7 +5,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
 #include <vector>
+#include <stdlib.h>
+#include <cstdlib>
 using namespace std;
 
 void dump(std::ostream &out, const std::vector<std::string> &v)
@@ -43,9 +46,9 @@ int main(int argc, char const *argv[])
     ifstream test_out(argv[2]);   /* This stream reads from test's output file  */
     ifstream user_out(argv[3]);   /* This stream reads from user's output file  */
     
-    //ifstream test_in ("in/input1.txt");
-    //ifstream test_out ("out/output1.txt");
-    //ifstream user_out ("out/output2.txt");
+//    ifstream test_in ("in/input1.txt");
+//    ifstream test_out ("out/output2.txt");
+//    ifstream user_out ("outCopy/output1.txt");
     
     /* Your code here */
     /* If user's output is correct, return 0, otherwise return 1       */
