@@ -4,133 +4,54 @@ We have between 10 to 30 courses and between 10 to 20 professors.
 It is defined by the following in the first line of input:
 
 ```shell
-12 8
+10 9
 ```
 
 Then number of edges in tree is mentioned:
 ```shell
-11
+9
 ```
 
 After that courses prerequisites is defined by mentioning edges 
 as a tuple of first course and second course with a space between.
 Pay attention that each edge is just mentioned once(not for each node separately!)as a tuple of courses and knowledge with a space between.
 ```shell
-0 3
-0 9
-0 11
+2 6
+1 6
 1 5
-2 3
-4 9
-5 8
-5 10
-6 10
-7 10
-7 11
+4 3
+7 9
+9 3
+7 2
+8 9
+0 5
 ```
 
 After that each professor's knowledge is printed for all courses
  as a tuple of courses and knowledge with a space between.
 ```shell
-0 80
-1 87
-2 79
-3 71
-4 50
-5 97
-6 54
-7 70
-8 65
-9 85
-10 63
-11 79
-0 73
-1 65
-2 60
-3 75
-4 74
-5 96
-6 95
-7 94
-8 99
-9 85
-10 54
-11 79
-0 81
-1 79
-2 88
-3 96
-4 65
-5 80
-6 99
-7 72
-8 76
-9 79
-10 68
-11 98
-0 62
-1 97
-2 55
-3 80
-4 81
-5 69
-6 66
-7 66
-8 100
-9 61
-10 94
-11 67
-0 52
-1 99
-2 71
-3 67
-4 80
-5 57
-6 59
-7 63
-8 54
-9 85
-10 98
-11 88
-0 82
-1 72
-2 63
-3 50
-4 98
-5 85
-6 90
-7 91
-8 88
-9 54
-10 82
-11 90
-0 54
-1 96
-2 81
-3 98
-4 55
-5 71
-6 80
-7 70
-8 100
-9 68
-10 90
-11 95
-0 64
-1 67
-2 82
-3 72
-4 98
-5 50
-6 74
-7 56
-8 77
-9 97
-10 66
-11 73
+65 52 84 90 39 31 88 56 58 84
+46 76 76 56 45 86 49 29 99 43
+88 93 63 50 42 55 94 64 32 84
+20 55 94 74 51 73 81 98 95 39
+68 37 22 69 40 73 26 64 94 86
+91 52 30 81 40 42 69 76 68 27
+26 26 47 44 87 78 95 82 35 48
+35 32 63 50 66 94 63 79 21 55
+74 53 59 39 91 95 51 30 49 96
 ```
 
 The answer must be in the following format, with courses sorted increasingly:
 ```shell
 course_number professor_number
+0 2
+5 1
+1 2
+6 0
+2 3
+7 6
+9 0
+8 1
+3 5
+4 6
 ```
